@@ -1,0 +1,73 @@
+<% if (messages.success) { %>
+    <div style="width: 50%;" class="mx-auto text-center fw-5">
+        <div class="alert alert-success" role="alert">
+            <%= messages.success%>
+        </div>
+    </div>
+<% } %>
+<% if (messages.failure) { %>
+    <div style="width: 50%;" class="mx-auto text-center fw-5">
+        <div class="alert alert-info" role="alert">
+            <%= messages.failure %>
+        </div>
+    </div>
+<% } %>
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1"><%= blog.title %></h1>
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2">Posted on <%= blog.date %> by <span class="text-capitalize"><%= user %> </span></div>
+                </header>
+                <!-- Post content-->
+                <section class="mb-5 fs-5">
+                    <%- blog.content %>
+                </section>
+            </article>
+            <% if(loginout) {%>
+                <div class="btn-toolbar mb-5" role="toolbar" aria-label="Toolbar with button groups" >
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                        <a class="btn btn-warning" role="button" href="/blogs/edit/<%= blog.id %>">Edit</a>
+                    </div>
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                        <form action="/blogs/<%= blog.id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
+                    </div>
+                    <div class="btn-group me-2" role="group" aria-label="Second group">
+                        <form action="/blogs/<%= blog.id %>/like" method="POST">
+                            <button class="btn btn-primary"type="submit">like</button>
+                        </form>
+                        <h4><%= blog.likes %></h4>
+                    </div>
+                </div>
+                <!-- Comments section-->
+                <section class="mb-5">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <!-- Comment form-->
+                            <form action="/blogs/<%= blog.id %>/comment" method="POST" >
+                                <label for="comment" class="form-label"><h4 class="text-start text-dark">Comment</h4></label>
+                                <textarea id="comment" name="comment" type="text" class="form-control mb-2" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
+                                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                            </form>
+                            <% for(var i=0;i< comment.length;i++) {%>
+                                <div class="fs-5 text-dark"><%= comment[i].body %></div>
+                                <div class="text-muted"><%= names[i]%></div>
+                                <form action="/blogs/<%= blog.id %>/<%= comment[i].id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
+                                </form>
+                            <% } %>
+                        </div>
+                    </div>
+                </section>
+                <% } %> 
+        </div>
+    </div>
+</div>
+

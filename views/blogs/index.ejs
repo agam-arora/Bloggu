@@ -1,0 +1,35 @@
+<div class="container-fluid ">
+    <% if (messages.successMessage) { %>
+        <div style="width: 50%;" class="mx-auto text-center fw-5">
+            <div class="alert alert-success" role="alert">
+                <%= messages.successMessage %>
+            </div>
+        </div>
+    <% } %>
+    <% if (messages.failure) { %>
+        <div style="width: 50%;" class="mx-auto text-center fw-5">
+            <div class="alert alert-info" role="alert">
+                <%= messages.failure %>
+            </div>
+        </div>
+    <% } %>
+        <% for(var i=0;i<blog.length;i++) {%>
+            <div class="card mb-3 mx-auto" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="<%= blog[i].thumbnail %>">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                        <a href="/blogs/<%= blog[i]._id %>">
+                            <h5 class="card-title"><%= blog[i].title %></h5>
+                            <p class="card-text"><small class="text-muted"><%= blog[i].date %></small></p>
+                            <p class="card-text">This is a wider card with supporting text below as </p>
+                        </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        <% } %>
+    <!-- </div> -->
+</div>

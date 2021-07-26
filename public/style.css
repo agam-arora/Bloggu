@@ -1,0 +1,25 @@
+body{
+    word-break: break-all;
+}
+.col-md-4 img {
+    
+    display: block;
+    margin-left: auto;  
+    margin-right: auto;
+    object-fit:cover;
+    height: 100%;
+    width: 100%;
+}
+img{
+    max-width: 100%;
+    height:auto;
+    display: block;
+    margin-left: auto;  
+    margin-right: auto;
+}
+body {
+    /* font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300))); */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
